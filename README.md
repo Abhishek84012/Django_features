@@ -60,7 +60,7 @@ step -> create_server - >  fill up information(hostname(get through above comman
 
 ```sh
 python3 -m pip install pylint
-python3 -m pylint *.py
+python3 -m pylint features/
 ```
 
 ### Fixing ordering.
