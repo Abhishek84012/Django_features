@@ -1,6 +1,13 @@
 # Django_features
 
-## Setup Project using Docker
+## Clone Project.
+
+```sh
+git clone https://github.com/Abhishek84012/Django_features.git
+cd Django_features
+```
+
+## Setup Project Using Docker
 
 Just make sure you have installed `docker` in your machine.
 
@@ -8,7 +15,7 @@ Just make sure you have installed `docker` in your machine.
 
 You can just copy the file `.env.template` as `.env` . And please ensure to add your credentials etc.
 
-### Fresh Setup of the Project
+### Setup of the Project
 
 Then run the following command to setup project using docker:
 
@@ -35,13 +42,13 @@ http://127.0.0.1:8000/
 Reference <!-- https://towardsdatascience.com/how-to-run-postgresql-and-pgadmin-using-docker-3a6a8ae918b5 -->
 
 http://127.0.0.1:5050/login?next=%2F
-Username and password take from .env.template file.
- 
+Username and password are taken from the .env.template file.
+
 Then run the following command to get hostname using docker:
 
 ```sh
 docker ps --all
-Get posgres database docker id.
+Get postgres database docker id.
 docker inspect docker_id | grep IPAddress
 ```
 
