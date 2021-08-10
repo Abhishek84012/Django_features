@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'authentication',
 ]
 
 MIDDLEWARE = [
@@ -133,8 +134,8 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # If the dubug file does not exist else it creates it.
-if not os.path.exists(COASTER_DIRECTORY_PATH):
-    os.makedirs(COASTER_DIRECTORY_PATH)
+if not os.path.exists("./debug.log"):
+    os.makedirs("./debug.log")
 
 # Django logging module.
 LOGGING = {
