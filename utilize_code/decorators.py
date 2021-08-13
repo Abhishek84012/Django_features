@@ -11,6 +11,9 @@
 
 
 # decorator
+from typing import Generator, Iterator
+
+
 def decorator_function(original_function):
     def wrapper_function():
         print("wrapper executed")
@@ -26,3 +29,5 @@ def display():
 # decorated_display()
 
 display()
+
+

@@ -1,3 +1,4 @@
+import webbrowser
 from idlelib.debugger_r import debugging
 
 # # Ternery operator
@@ -61,7 +62,57 @@ from idlelib.debugger_r import debugging
 #     print(getattr(person, key))
 
 # on input you can use getpass() instead of input.(value not neccsray on get pass)
+# x, y, z, p = input("Give me numbers: ").split()
 
- 
- 
- 
+# subs = 2400
+# likes = 200
+# comment = 56
+
+# condions = [
+#     subs > 150,
+#     likes > 150,
+#     comment > 50
+# ]
+
+# condions = [
+#     subs > 150,
+#     likes > 150,
+#     comment > 50
+# ]
+
+
+# # OR condition
+# if any(condions):
+#     print("Awesome")
+
+# # And condition
+# if all(condions):
+#     print("Awesome")
+
+# Find Reapted most on list.
+# most  =max(set(a),key=a.count)
+
+# open link on web browser
+# webbrowser.open("url", "url")
+
+# Copy list
+# deepcopy(list1)
+
+# data = []
+# print(locals())
+# print("\n")
+# print(globals())
+
+# print('data' in locals(), 'data' in globals())
+
+# def move_position(x,y,z):
+#     print("")
+# data = [10,2,30]
+# move_position(*data)
+
+
+output = []
+
+# function used for removing nested
+# lists in python.
+

@@ -50,3 +50,10 @@
 #     print(num)
 
 
+from compiler.ast import flatten
+
+Input = [1,3,4,5] 
+
+
+a=list(flatten(Input))
+print(a)
