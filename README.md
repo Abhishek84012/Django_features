@@ -53,3 +53,19 @@ docker inspect docker_id | grep IPAddress
 ```
 
 step -> create_server - >  fill up information(hostname(get through above command), username, password this take on .env.template) - > save 
+
+### Check code quality.
+
+<!-- https://pypi.org/project/pylint/ -->
+
+```sh
+python3 -m pip install pylint
+python3 -m pylint features/
+```
+
+### Fixing ordering.
+
+```sh
+python3 -m pip install isort
+python3 -m isort features/
+```
