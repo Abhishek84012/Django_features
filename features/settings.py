@@ -56,11 +56,10 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'features.urls'
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [str(os.path.join(BASE_DIR, 'features', 'templates'))],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -156,3 +155,17 @@ LOGGING = {
         },
     },
 }
+AUTH_USER_MODEL = 'authentication.MyUser'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'abhishekd.tagline@gmail.com'
+EMAIL_HOST_PASSWORD = 'Abhi84012@'
+EMAIL_USE_TLS = True
+
+# During development only
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'
