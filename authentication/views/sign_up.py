@@ -1,8 +1,7 @@
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from authentication.admin import UserCreationForm
-
-# Sign Up View
+from django.contrib.auth.mixins import PermissionRequiredMixin
 
 
 class SignUpView(CreateView):
