@@ -27,4 +27,12 @@ urlpatterns = [
     # https://simpleisbetterthancomplex.com/tutorial/2016/09/19/how-to-create-password-reset-view.html
     path('', include('django.contrib.auth.urls')),
     path('', TemplateView.as_view(template_name="home.html"), name="home"),
+    # Social authentication urls.
+    # path('social-auth', include('social_django.urls', namespace='social'))
+    path('accounts/', include('allauth.urls')),
+
 ]
+''' Note that you do not necessarily need the URLs provided by django.contrib.auth.urls. \ 
+    Instead of the URLs login, logout, and password_change (among others), \
+    you can use the URLs provided by allauth: account_login, account_logout, account_set_password
+'''

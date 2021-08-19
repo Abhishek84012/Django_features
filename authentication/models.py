@@ -3,11 +3,12 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.db import models
 from django.contrib.auth.models import Group
+import datetime
 
 
 # Fully customization models.
 class MyUserManager(BaseUserManager):
-    def create_user(self, email, date_of_birth, password=None):
+    def create_user(self, email, date_of_birth=datetime.date.today, password=None):
         """
         Creates and saves a User with the given email, date of
         birth and password.
@@ -45,7 +46,7 @@ class MyUser(AbstractBaseUser):
         max_length=255,
         unique=True,
     )
-    date_of_birth = models.DateField()
+    date_of_birth = models.DateField(default=datetime.date.today)
     mobile_number = models.CharField(max_length=10)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
