@@ -27,4 +27,6 @@ urlpatterns = [
     # https://simpleisbetterthancomplex.com/tutorial/2016/09/19/how-to-create-password-reset-view.html
     path('', include('django.contrib.auth.urls')),
     path('', TemplateView.as_view(template_name="home.html"), name="home"),
+    # Social authentication urls.
+    path('social-auth', include('social_django.urls', namespace='social'))
 ]

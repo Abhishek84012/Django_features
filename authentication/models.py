@@ -7,7 +7,7 @@ from django.contrib.auth.models import Group
 
 # Fully customization models.
 class MyUserManager(BaseUserManager):
-    def create_user(self, email, date_of_birth, password=None):
+    def create_user(self, email, date_of_birth=None, password=None):
         """
         Creates and saves a User with the given email, date of
         birth and password.
