@@ -6,6 +6,22 @@
   {% csrf_token %}
   {{ form.as_p }}
   <button type="submit">Log In</button>
+  <div class="row">
+    <div class="col-md-8 mx-auto social-container my-2 order-md-1">
+
+      <a id="google_login" href="/accounts/google/login" class="btn btn-success">
+        Sign in with Google
+      </a>
+      <a id="github_login" href="/accounts/github/login" class="btn btn-success">
+        Sign in with Github
+      </a>
+      <a id="facebook_login" href="/accounts/facebook/login" class="btn btn-success">
+        Sign in with Facebook
+      </a>
+
+    </div>
+  </div>
+  </div>
 </form>
 <a href="{% url 'password_reset' %}">Forgot password</a>
 {% endblock %}

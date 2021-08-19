@@ -69,3 +69,8 @@ python3 -m pylint features/
 python3 -m pip install isort
 python3 -m isort features/
 ```
+
+## Set up social authentication.
+
+<!-- https://www.webforefront.com/django/usermanagementallauth.html -->
+<!-- https://django-allauth.readthedocs.io/en/latest/providers.html -->
