@@ -1,13 +1,16 @@
 '''https://docs.djangoproject.com/en/3.2/topics/auth/customizing/
 '''
+import datetime
+
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.db import models
-from django.contrib.auth.models import Group
-import datetime
 
 
 # Fully customization models.
 class MyUserManager(BaseUserManager):
+    """Create user and superuser with date of birth.
+    """
+
     def create_user(self, email, date_of_birth=datetime.date.today, password=None):
         """
         Creates and saves a User with the given email, date of
@@ -41,6 +44,8 @@ class MyUserManager(BaseUserManager):
 
 
 class MyUser(AbstractBaseUser):
+    '''Override AbstractBaseUser.
+    '''
     email = models.EmailField(
         verbose_name='email address',
         max_length=255,
@@ -57,20 +62,20 @@ class MyUser(AbstractBaseUser):
     REQUIRED_FIELDS = ['date_of_birth']
 
     def __str__(self):
-        return self.email
+        return str(self.email)
 
-    def has_perm(self, perm, obj=None):
-        "Does the user have a specific permission?"
-        # Simplest possible answer: Yes, always
-        return True
+    # def has_perm(self, perm, obj=None):
+    #     "Does the user have a specific permission?"
+    #     # Simplest possible answer: Yes, always
+    #     return True
 
-    def has_module_perms(self, app_label):
-        "Does the user have permissions to view the app `app_label`?"
-        # Simplest possible answer: Yes, always
-        return True
+    # def has_module_perms(self, app_label):
+    #     "Does the user have permissions to view the app `app_label`?"
+    #     # Simplest possible answer: Yes, always
+    #     return True
 
-    @property
-    def is_staff(self):
-        "Is the user a member of staff?"
-        # Simplest possible answer: All admins are staff
-        return self.is_admin
+    # @property
+    # def is_staff(self):
+    #     "Is the user a member of staff?"
+    #     # Simplest possible answer: All admins are staff
+    #     return self.is_admin

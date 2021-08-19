@@ -17,11 +17,14 @@ class UserCreationForm(forms.ModelForm):
         label='Password confirmation', widget=forms.PasswordInput)
 
     class Meta:
+        """Display email, date of birth and mobile number.
+        """
         model = MyUser
         fields = ('email', 'date_of_birth', 'mobile_number')
 
     def clean_password2(self):
-        # Check that the two password entries match
+        """Check that the two password entries match
+        """
         password1 = self.cleaned_data.get("password1")
         password2 = self.cleaned_data.get("password2")
         if password1 and password2 and password1 != password2:
@@ -29,7 +32,8 @@ class UserCreationForm(forms.ModelForm):
         return password2
 
     def save(self, commit=True):
-        # Save the provided password in hashed format
+        """Save the provided password in hashed format/
+        """
         user = super().save(commit=False)
         user.set_password(self.cleaned_data["password1"])
         if commit:
@@ -45,6 +49,8 @@ class UserChangeForm(forms.ModelForm):
     password = ReadOnlyPasswordHashField()
 
     class Meta:
+        """Display email, password and date_of_birth,is_active and is_admin.
+        """
         model = MyUser
         fields = ('email', 'password', 'date_of_birth',
                   'is_active', 'is_admin')
