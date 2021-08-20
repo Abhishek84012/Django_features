@@ -47,10 +47,12 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'authentication',
-    # google complete.
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.github',
+    # E-Commerce
+    'e_commerce',
+    
 
 ]
 
