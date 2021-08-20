@@ -51,7 +51,7 @@ class MyUser(AbstractBaseUser):
         max_length=255,
         unique=True,
     )
-    date_of_birth = models.DateField(default=datetime.date.today)
+    date_of_birth = models.DateField(default='')
     mobile_number = models.CharField(max_length=10)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
