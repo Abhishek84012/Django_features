@@ -6,7 +6,7 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.core.exceptions import ValidationError
 
-from authentication.models import MyUser
+from authentication.models import MyUser, Customer, Seller
 
 
 class UserCreationForm(forms.ModelForm):
@@ -53,7 +53,7 @@ class UserChangeForm(forms.ModelForm):
         """
         model = MyUser
         fields = ('email', 'password', 'date_of_birth',
-                )
+                  )
 
 
 class UserAdmin(BaseUserAdmin):
@@ -67,7 +67,7 @@ class UserAdmin(BaseUserAdmin):
     list_display = ('email', 'date_of_birth', 'is_admin')
     list_filter = ('is_admin',)
     fieldsets = (
-        (None, {'fields': ('email', 'password')}),
+        (None, {'fields': ('email', 'password', 'userType')}),
         ('Personal info', {'fields': ('date_of_birth',)}),
         ('Permissions', {'fields': ('is_admin',)}),
     )
@@ -85,6 +85,10 @@ class UserAdmin(BaseUserAdmin):
 
 
 # Now register the new UserAdmin...
-admin.site.register(MyUser)
+admin.site.register(MyUser, UserAdmin)
+admin.site.register(Seller)
+admin.site.register(Customer)
+
+
 # ... and, since we're not using Django's built-in permissions,
 # unregister the Group model from admin.
