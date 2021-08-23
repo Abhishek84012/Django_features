@@ -7,6 +7,17 @@ from django.db import models
 from .managers import MyUserManager
 
 
+class UserType(models.Model):
+    CUSTOMER = 1
+    SELLER = 2
+    TYPE_CHOICE = (
+        (SELLER, "Seller"),
+        (CUSTOMER, "Customer")
+    )
+    id = models.PositiveSmallIntegerField(
+        choices=TYPE_CHOICE, primary_key=True)
+
+
 class MyUser(AbstractBaseUser):
     '''Override AbstractBaseUser.
     '''
@@ -17,6 +28,19 @@ class MyUser(AbstractBaseUser):
     )
     date_of_birth = models.DateField(blank=True)
     mobile_number = models.CharField(max_length=10)
+
+    '''Achive multiple use types.
+    '''
+    # is_customer = models.BooleanField(default=True)
+    # is_seller = models.BooleanField(default=True)
+
+    # type = (
+    #     (1,'Seller'),
+    #     (2,'Customer')
+    # )
+    # user_type = models.IntegerField(choices=type,default=1)
+
+    userType = models.ManyToManyField(UserType)
 
     objects = MyUserManager()
 
