@@ -1,4 +1,5 @@
 '''https://docs.djangoproject.com/en/3.2/topics/auth/customizing/
+https://www.youtube.com/watch?v=UNx2F77IWMo&list=PLLz6Bi1mIXhEXEnfAgUJXB0vLjHkyee6q&index=9
 '''
 
 from django.conf import settings
