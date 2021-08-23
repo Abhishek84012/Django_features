@@ -1,4 +1,5 @@
 '''https://docs.djangoproject.com/en/3.2/topics/auth/customizing/
+https://www.youtube.com/watch?v=UNx2F77IWMo&list=PLLz6Bi1mIXhEXEnfAgUJXB0vLjHkyee6q&index=9
 '''
 
 from django.conf import settings
@@ -7,7 +8,7 @@ from django.db import models
 
 from .managers import MyUserManager
 
-'''Achieve multiple use types through below different three ways(if exists all same field).
+'''Achieve multiple user types through below different three ways(if exists all same field).
 '''
 # class UserType(models.Model):
 #     CUSTOMER = 1
@@ -22,7 +23,7 @@ from .managers import MyUserManager
 #     def __str__(self):
 #         return self.get_id_display()
 
-'''Achieve multiple use types through below different three ways(if exists different field).
+'''Achieve multiple use types through below different ways(if exists different field).
 '''
 
 # class Customer(models.Model):
@@ -156,3 +157,5 @@ class Customer(MyUser):
     @property
     def sell_additional(self):
         return self.SellerAdditional
+
+
