@@ -1,6 +1,6 @@
-from django.db import models
 # from django.contrib.auth.models import User
 from django.conf import settings
+from django.db import models
 
 # Create your models here.
 
@@ -75,4 +75,3 @@ class Order(models.Model):
 
 class deal(models.Model):
     user = models.ManyToManyField(settings.AUTH_USER_MODEL)
-    
