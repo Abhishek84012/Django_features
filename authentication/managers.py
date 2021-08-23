@@ -1,7 +1,6 @@
 '''https://simpleisbetterthancomplex.com/tutorial/2016/07/22/how-to-extend-django-user-model.html
 '''
 from django.contrib.auth.models import BaseUserManager
-import datetime
 
 # Fully customization models.
 
