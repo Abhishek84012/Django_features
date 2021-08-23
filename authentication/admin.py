@@ -53,7 +53,7 @@ class UserChangeForm(forms.ModelForm):
         """
         model = MyUser
         fields = ('email', 'password', 'date_of_birth',
-                  'is_active', 'is_admin')
+                )
 
 
 class UserAdmin(BaseUserAdmin):

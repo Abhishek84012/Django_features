@@ -48,7 +48,7 @@ Then run the following command to get hostname using docker:
 
 ```sh
 docker ps --all
-Get postgres database docker id.
+# Get postgres database docker postgres id.
 docker inspect docker_id | grep IPAddress
 ```
 
