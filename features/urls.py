@@ -29,6 +29,7 @@ urlpatterns = [
     # Social authentication urls.
     # path('social-auth', include('social_django.urls', namespace='social'))
     path('accounts/', include('allauth.urls')),
+    path('e_commerce/', include('e_commerce.urls')),
 
 ]
 ''' Note that you do not necessarily need the URLs provided by django.contrib.auth.urls. \ 
