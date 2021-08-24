@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.github',
     # E-Commerce
     'e_commerce',
-    
+
 
 ]
 
@@ -181,7 +181,6 @@ EMAIL_USE_TLS = True
 
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
-
 
 
 '''Social authentications
