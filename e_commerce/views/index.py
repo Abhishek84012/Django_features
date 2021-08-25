@@ -1,40 +1,42 @@
 '''CLASS BASED VIEW:- https://ccbv.co.uk/
 '''
+from django.http import HttpResponse, HttpResponseNotAllowed
 from django.views.generic import TemplateView
-from django.http import HttpResponse,HttpResponseNotAllowed
 
 
 class index(TemplateView):
+    """All methods override because we should understand the flow.
+    """
     template_name = "index.html"
-    
 
     def _allowed_methods(self):
         print("Called _allowed_methods")
         return [m.upper() for m in self.http_method_names if hasattr(self, m)]
-    
+
     def dispatch(self, request, *args, **kwargs):
         print("Called dispatch")
         # Try to dispatch to the right method; if a method doesn't exist,
         # defer to the error handler. Also defer to the error handler if the
         # request method isn't on the approved list.
         if request.method.lower() in self.http_method_names:
-            handler = getattr(self, request.method.lower(), self.http_method_not_allowed)
+            handler = getattr(self, request.method.lower(),
+                              self.http_method_not_allowed)
         else:
             handler = self.http_method_not_allowed
         return handler(request, *args, **kwargs)
-    
+
     def get(self, request, *args, **kwargs):
         print("Called get")
         context = self.get_context_data(**kwargs)
         return self.render_to_response(context)
-    
+
     def get_context_data(self, **kwargs):
         print("Called get_context_data")
         kwargs.setdefault('view', self)
         if self.extra_context is not None:
             kwargs.update(self.extra_context)
         return kwargs
-    
+
     def get_template_names(self):
         print("Called get_template_names")
         """
@@ -47,6 +49,7 @@ class index(TemplateView):
                 "'template_name' or an implementation of 'get_template_names()'")
         else:
             return [self.template_name]
+
     def http_method_not_allowed(self, request, *args, **kwargs):
         print("CAlled http_method_not_allowed")
         # logger.warning(
@@ -54,7 +57,7 @@ class index(TemplateView):
         # extra={'status_code': 405, 'request': request}
         # )
         return HttpResponseNotAllowed(self._allowed_methods())
-    
+
     def __init__(self, **kwargs):
         print("Callled init")
         """
@@ -65,7 +68,7 @@ class index(TemplateView):
         # instance, or raise an error.
         for key, value in kwargs.items():
             setattr(self, key, value)
-            
+
     def options(self, request, *args, **kwargs):
         print("Callled options")
         """Handle responding to requests for the OPTIONS HTTP verb."""
@@ -73,7 +76,7 @@ class index(TemplateView):
         response['Allow'] = ', '.join(self._allowed_methods())
         response['Content-Length'] = '0'
         return response
-    
+
     def render_to_response(self, context, **response_kwargs):
         """
         Return a response, using the `response_class` for this view, with a
@@ -89,6 +92,7 @@ class index(TemplateView):
             using=self.template_engine,
             **response_kwargs
         )
+
     def setup(self, request, *args, **kwargs):
         print("called setup")
         """Initialize attributes shared by all view methods."""
