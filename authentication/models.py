@@ -7,6 +7,8 @@ from django.contrib.auth.models import AbstractBaseUser
 from django.db import models
 
 from .managers import MyUserManager
+from multiselectfield import MultiSelectField
+from django.db.models import Q
 
 '''Achieve multiple user types through below different three ways(if exists all same field).
 '''
@@ -60,6 +62,7 @@ class MyUser(AbstractBaseUser):
         max_length=255,
         unique=True,
     )
+    name = models.CharField(max_length=100)
     date_of_birth = models.DateField(blank=True, null=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
@@ -85,8 +88,11 @@ class MyUser(AbstractBaseUser):
         CUSTOMER = "customer", "CUSTOMER"
 
     default_type = Types.CUSTOMER
-    type = models.CharField(
-        max_length=255, choices=Types.choices, default=default_type)
+    # type = models.CharField(
+    #     max_length=255, choices=Types.choices, default=default_type)
+
+    type = MultiSelectField(choices=Types.choices,
+                            null=True, blank=True, default=[])
 
     objects = MyUserManager()
 
@@ -114,19 +120,19 @@ class MyUser(AbstractBaseUser):
 
     def save(self, *args, **kwargs):
         if not self.id:
-            self.type = self.default_type
+            self.type.append(self.default_type)
         return super().save(*args, **kwargs)
 
 
 # Modal managers for proxy models.
 class SellerManager(models.Manager):
     def get_queryset(self, *args, **kwargs):
-        return super().get_queryset(*args, **kwargs).filter(type=MyUser.Types.SELLER)
+        return super().get_queryset(*args, **kwargs).filter(Q(type__contains=MyUser.Types.SELLER))
 
 
 class CustomerManager(models.Manager):
     def get_queryset(self, *args, **kwargs):
-        return super().get_queryset(*args, **kwargs).filter(type=MyUser.Types.CUSTOMER)
+        return super().get_queryset(*args, **kwargs).filter(Q(type__contains=MyUser.Types.CUSTOMER))
 
 
 class Seller(MyUser):

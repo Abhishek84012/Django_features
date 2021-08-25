@@ -30,6 +30,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'sign-up' %}">SignUp</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'sign-up-seller' %}">SignUpSeller</a>
+                    </li>
+
+
                     {% if not request.user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'login' %}">Login</a>
