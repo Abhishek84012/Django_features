@@ -28,7 +28,10 @@
                         <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'sign-up' %}">SignUp</a>
+                        <a class="nav-link" href="{% url 'sign-up-seller' %}">SignUpSeller</a>
+                    </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="{% url 'sign-up-customer' %}">SignUpCustomer</a>
                     </li>
                     {% if not request.user.is_authenticated %}
                     <li class="nav-item">

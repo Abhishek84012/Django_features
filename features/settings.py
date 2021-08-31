@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.github',
     # E-Commerce
     'e_commerce',
+    'multiselectfield',
 
 
 ]

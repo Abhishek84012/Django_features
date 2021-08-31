@@ -5,9 +5,10 @@ https://www.youtube.com/watch?v=UNx2F77IWMo&list=PLLz6Bi1mIXhEXEnfAgUJXB0vLjHkye
 from django.conf import settings
 from django.contrib.auth.models import AbstractBaseUser
 from django.db import models
+from multiselectfield import MultiSelectField
 
 from .managers import MyUserManager
-
+from django.db.models import Q
 '''Achieve multiple use types through below different three ways(if exists all same field).
 '''
 # class UserType(models.Model):
@@ -61,6 +62,7 @@ class MyUser(AbstractBaseUser):
         unique=True,
     )
     date_of_birth = models.DateField(blank=True, null=True)
+    name = models.CharField(default="", blank=True, null=True,max_length=100)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
     mobile_number = models.CharField(max_length=10, null=True, blank=True)
@@ -85,8 +87,10 @@ class MyUser(AbstractBaseUser):
         CUSTOMER = "customer", "CUSTOMER"
 
     default_type = Types.CUSTOMER
-    type = models.CharField(
-        max_length=255, choices=Types.choices, default=default_type)
+    # type = models.CharField(
+    #     max_length=255, choices=Types.choices, default=default_type)
+    type = MultiSelectField(choices=Types.choices,
+                            default=[], null=True, blank=True)
 
     objects = MyUserManager()
 
@@ -114,19 +118,19 @@ class MyUser(AbstractBaseUser):
 
     def save(self, *args, **kwargs):
         if not self.id:
-            self.type = self.default_type
+            self.type.append(self.default_type)
         return super().save(*args, **kwargs)
 
 
 # Modal managers for proxy models.
 class SellerManager(models.Manager):
     def get_queryset(self, *args, **kwargs):
-        return super().get_queryset(*args, **kwargs).filter(type=MyUser.Types.SELLER)
+        return super().get_queryset(*args, **kwargs).filter(Q(type__contains=MyUser.Types.SELLER))
 
 
 class CustomerManager(models.Manager):
     def get_queryset(self, *args, **kwargs):
-        return super().get_queryset(*args, **kwargs).filter(type=MyUser.Types.CUSTOMER)
+        return super().get_queryset(*args, **kwargs).filter(Q(type__contains=MyUser.Types.CUSTOMER))
 
 
 class Seller(MyUser):

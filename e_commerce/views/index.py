@@ -1,7 +1,7 @@
 '''CLASS BASED VIEW:- https://ccbv.co.uk/
 '''
+from django.http import HttpResponse, HttpResponseNotAllowed
 from django.views.generic import TemplateView
-from django.http import HttpResponse,HttpResponseNotAllowed
 
 
 class index(TemplateView):
